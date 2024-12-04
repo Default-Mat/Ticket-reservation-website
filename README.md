@@ -1,1 +1,1 @@
-# Alibaba-project
+Ticket Reservation project by Shahrood University students.
