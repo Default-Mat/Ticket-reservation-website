@@ -25,6 +25,7 @@
 
 .linkdiv {
     font-size: 25px;
+    text-decoration: none;
     padding: 5px 5px;
     font-weight: bold;
     color: black;
@@ -69,23 +70,32 @@
 
 }
 
-.texts{
+.texts {
     border-style: solid;
-    border-color: #eff48f;
+    border-color: gray;
+    background-color: rgb(241, 241, 241);
+    width: 95%;
     margin-top: 50px;
     border-radius: 5px;
     padding: 30px 30px;
+    box-shadow: 0 5px 5px 0 gray;
 }
-.textss{
+
+.textss {
     border-style: solid;
-    border-color: #eff48f;
+    border-color: gray;
+    background-color: rgb(241, 241, 241);
+    width: 95%;
     margin-top: 50px;
     border-radius: 5px;
     padding: 30px 30px;
+    box-shadow: 0 5px 5px 0 gray;
 }
-.textone{
+
+.textone {
     line-height: 50px;
 }
+
 .headspan {
     position: relative;
     display: flex;
