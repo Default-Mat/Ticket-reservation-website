@@ -19,6 +19,54 @@
 
 }
 
+#livesearch1 {
+    position: absolute;
+    top: 70px;
+    left: 91px;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(227, 227, 227);
+    border-width: thin;
+    border-style: solid;
+    border-radius: 5px;
+    width: 250px;
+}
+
+#livesearch2 {
+    position: absolute;
+    top: 70px;
+    right: 91px;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(227, 227, 227);
+    border-width: thin;
+    border-style: solid;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.autocomplete-item {
+    height: 40px;
+}
+
+.autocomplete-item:hover {
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.inner-block {
+    text-align: right;
+    border-bottom: #e2e2e2;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    height: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hide {
+    display: none;
+}
+
 .textone {
     font-weight: 40px;
 }
@@ -58,6 +106,7 @@
 }
 
 .forthdiv {
+    position: relative;
     width: 870px;
     height: 300px;
     margin-top: -100px;
@@ -127,6 +176,7 @@ details {
 }
 
 .input {
+    direction: rtl;
     width: 250px;
     margin: 20px 20px;
     border-radius: 5px;

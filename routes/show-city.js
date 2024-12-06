@@ -10,14 +10,14 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
-router.post('/show-city', (req, res) => {
-    const partial_city_name = req.body;
+router.get('/show-city', (req, res) => {
+    const partial_city_name = req.query.city;
     const like_value = `%${partial_city_name}%`;
-    const select_city_query = 'SELECT * FROM train-db WHERE city_name LIKE ?';
+    const select_city_query = 'SELECT city_name FROM city WHERE city_name LIKE ? AND available = 1';
     db.query(select_city_query, [like_value], (select_error, select_results) =>{
         if (select_error)
             console.log(select_error);
-        res.send(select_results)
+        res.send(select_results);
     });
 });
 

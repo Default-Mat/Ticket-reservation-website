@@ -30,7 +30,7 @@ app.set('view engine', 'hbs');
 
 // routes
 app.use('/', require('./routes/pages'))
-app.use('/show-city', require('./routes/show-city'));
+app.use('/ajax', require('./routes/show-city'));
 
 // Server starts listening
 app.listen(3000, () => {
