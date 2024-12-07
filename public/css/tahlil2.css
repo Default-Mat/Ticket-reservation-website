@@ -19,28 +19,43 @@
 
 }
 
-#livesearch1 {
+.livesearch {
     position: absolute;
-    top: 70px;
-    left: 91px;
     background-color: rgb(255, 255, 255);
     border-color: rgb(227, 227, 227);
     border-width: thin;
     border-style: solid;
     border-radius: 5px;
     width: 250px;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
-#livesearch2 {
-    position: absolute;
+.livesearch::-webkit-scrollbar {
+    width: 8px;
+}
+
+.livesearch::-webkit-scrollbar-thumb {
+    background-color: #aeaeae;
+    border-radius: 4px;
+}
+
+.livesearch::-webkit-scrollbar-thumb:hover {
+    background-color: #949494;
+}
+
+.firstinput .livesearch {
     top: 70px;
     right: 91px;
-    background-color: rgb(255, 255, 255);
-    border-color: rgb(227, 227, 227);
-    border-width: thin;
-    border-style: solid;
-    border-radius: 5px;
-    width: 250px;
+}
+
+.secondinput .livesearch {
+    top: 70px;
+    left: 91px;
+}
+
+.hide {
+    display: none;
 }
 
 .autocomplete-item {
@@ -61,10 +76,6 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.hide {
-    display: none;
 }
 
 .textone {
