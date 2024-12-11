@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const cookie_parser = require('cookie-parser');
 
 // .env file config
 dotenv.config({path: './process.env'});
@@ -27,10 +28,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static('public'));
 app.set('view engine', 'hbs');
+app.use(cookie_parser());
 
 // routes
 app.use('/', require('./routes/pages'))
 app.use('/ajax', require('./routes/show-city'));
+app.use('/auth', require('./routes/auth'));
 
 // Server starts listening
 app.listen(3000, () => {

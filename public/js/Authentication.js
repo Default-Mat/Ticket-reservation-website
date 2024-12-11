@@ -1,6 +1,6 @@
 function validation(event) {
   // Prevent default behavior of form submission
-  event.preventDefault();
+  // event.preventDefault();
   let isvalid = true;
   const emailInput = document.getElementById("email").value.trim();
   const errorMessage = document.getElementById("error-message");
@@ -19,8 +19,15 @@ function validation(event) {
     document.getElementById("email").style.border = "1.5px solid red";
     document.getElementById("email").style.borderRadius = "5px";
     errorMessage.innerHTML = "ایمیل وارد شده نامعتبر است ";
-  } else {
-    isvalid = true;
-    window.location.href = "confirm_email.html";
   }
+  if (!isvalid) {
+    event.preventDefault();
+  }
+  else {
+    sessionStorage.setItem('email', emailInput);
+  }
+  // else {
+  //   isvalid = true;
+  //   window.location.href = "confirm_email.html";
+  // }
 }

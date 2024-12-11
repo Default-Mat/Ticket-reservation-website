@@ -13,39 +13,42 @@
     <link rel="stylesheet" href="../css/confirm_email.css">
   </head>
   <body>
-    <div class="d-flex flex-column mb-3 main-container">
+    <form class="d-flex flex-column mb-3 main-container" id="codeform">
       <h1 class="h1-text">کد تایید را وارد کنید</h1>
       <p class="p-text">کد ارسال شده به ایمیل خود را وارد کنید</p>
       <a href="Authentication.html" class="edit-email">اصلاح ایمیل</a>
       <div class="container email-container">
         <div class="row">
           <div class="col">
-            <input type="text" value="" class="input-confirm-email" />
+            <input type="text" value="" class="input-confirm-email" maxlength="1" />
           </div>
           <div class="col">
-            <input type="text" value="" class="input-confirm-email" />
+            <input type="text" value="" class="input-confirm-email" maxlength="1" />
           </div>
           <div class="col">
-            <input type="text" value="" class="input-confirm-email" />
+            <input type="text" value="" class="input-confirm-email" maxlength="1" />
           </div>
           <div class="col">
-            <input type="text" value="" class="input-confirm-email" />
+            <input type="text" value="" class="input-confirm-email" maxlength="1" />
           </div>
           <div class="col">
-            <input type="text" value="" class="input-confirm-email" />
+            <input type="text" value="" class="input-confirm-email" maxlength="1" />
           </div>
         </div>
       </div>
-      <a href="" class="resend-code">ارسال مجدد کد</a>
+      <a href="" class="resend-code" id="resend-code">ارسال مجدد کد</a>
+      <span id="error-message"></span>
       <button class="btn btn-primary submit-input" type="submit">
-        <a href="confirm_email.html" class="a-link-button">دریافت و تایید کد</a>
+        <!-- <a href="confirm_email.html" class="a-link-button">دریافت و تایید کد</a> -->
+         دریافت و تایید کد
       </button>
       <a href="" class="login-password">ورود با کلمه عبور</a>
-    </div>
+    </form>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"
   ></script>
+  <script src="js/confirm_email.js"></script>
 </html>
