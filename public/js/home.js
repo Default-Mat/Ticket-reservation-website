@@ -1,48 +1,49 @@
 function validateForm() {
-    let isValid = true;
+  let isValid = true;
 
-    const origin = document.getElementById('input1').value.trim();
-    const destination = document.getElementById('input2').value.trim();
-    const date = document.getElementById('input3').value.trim();
-    const user = document.getElementById('input4').value.trim();
+  const origin = document.getElementById("input1").value.trim();
+  const destination = document.getElementById("input2").value.trim();
+  const date = document.getElementById("input3").value.trim();
+  const user = document.getElementById("input4").value.trim();
 
-    const firstError = document.getElementById('firstError');
-    const secondError = document.getElementById('secondError');
-    const thirdError = document.getElementById('thirdError');
-    const forthError = document.getElementById('forthError');
+  const firstError = document.getElementById("firstError");
+  const secondError = document.getElementById("secondError");
+  const thirdError = document.getElementById("thirdError");
+  const forthError = document.getElementById("forthError");
 
-    if (origin == '') {
-        firstError.textContent = 'مبدا نمیتواند خالی باشد';
-        firstError.style.display = 'block';
-        isValid = false;
-    } else {
-        firstError.style.display = 'none';
-    }
+  if (origin == "") {
+    firstError.textContent = "مبدا نمیتواند خالی باشد";
+    firstError.style.display = "block";
+    isValid = false;
+  } else {
+    firstError.style.display = "none";
+  }
 
-    if (destination == '') {
-        secondError.textContent = 'مقصد نمیتواند خالی باشد';
-        secondError.style.display = 'block';
-        isValid = false;
-    } else {
-        secondError.style.display = 'none';
-    }
+  if (destination == "") {
+    secondError.textContent = "مقصد نمیتواند خالی باشد";
+    secondError.style.display = "block";
+    isValid = false;
+  } else {
+    secondError.style.display = "none";
+  }
 
-    if (date == '') {
-        thirdError.textContent = 'تاریخ نمیتواند خالی باشد';
-        thirdError.style.display = 'block';
-        isValid = false;
-    } else {
-        thirdError.style.display = 'none';
-    }
+  if (date == "") {
+    thirdError.textContent = "تاریخ نمیتواند خالی باشد";
+    thirdError.style.display = "block";
+    isValid = false;
+  } else {
+    thirdError.style.display = "none";
+  }
 
-    if (user == '') {
-        forthError.textContent = 'تعداد مسافران نمیتواند خالی باشد';
-        forthError.style.display = 'block';
-        isValid = false;
-    } else {
-        forthError.style.display = 'none';
-    }
+  if (user == "") {
+    forthError.textContent = "تعداد مسافران نمیتواند خالی باشد";
+    forthError.style.display = "block";
+    isValid = false;
+  } else {
+    forthError.style.display = "none";
+  }
 
+<<<<<<< HEAD:public/js/home.js
     if (isValid) {
         alert('فرم با موفقیت ارسال شد ');
     }
@@ -73,3 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
        document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin', '<ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="authentication.html">ورود</a></li></ul>'); 
     }
 });
+=======
+  if (isValid) {
+    window.location.href = "../html/main_page.html";
+  }
+}
+>>>>>>> b0fd826 (complete of main page):public/js/tahlil2.js
