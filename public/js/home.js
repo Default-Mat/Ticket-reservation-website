@@ -73,3 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
        document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin', '<ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="authentication.html">ورود</a></li></ul>'); 
     }
 });
+
+document.getElementById('form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+  
+    const source = document.getElementById('input1').value;
+    const destination = document.getElementById('input2').value;
+    const date = document.getElementById('input3').value;
+    const passengers = document.getElementById('input4').value;
+  
+    // Redirect to results page with query parameters
+    const queryParams = new URLSearchParams({ source, destination, date, passengers }).toString();
+    window.location.href = `/test.html?${queryParams}`;
+  });
+  

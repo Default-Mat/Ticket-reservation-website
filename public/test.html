@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Trains</title>
+</head>
+<body>
+  <h1>Available Trains</h1>
+  <div id="results"></div>
+
+  <script>
+    const queryParams = new URLSearchParams(window.location.search);
+    const source = queryParams.get('source');
+    const destination = queryParams.get('destination');
+    const date = queryParams.get('date');
+    const passengers = queryParams.get('passengers');
+
+    fetch(`ajax/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
+      .then(response => response.json())
+      .then(data => {
+        const resultsDiv = document.getElementById('results');
+        if (data.length === 0) {
+          resultsDiv.innerHTML = '<p>No trains available for the selected route.</p>';
+        } else {
+          data.forEach(train => {
+            const trainDiv = document.createElement('div');
+            trainDiv.innerHTML = `
+              <p><strong>${train.train_name}</strong></p>
+              <p>Available Seats: ${train.number_of_remaining_tickets}</p>
+            `;
+            resultsDiv.appendChild(trainDiv);
+          });
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
