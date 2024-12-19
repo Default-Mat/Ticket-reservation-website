@@ -1,41 +1,18 @@
-<<<<<<< HEAD:public/css/home.css
 /* .seconddiv {
-    position: relative;
-    background-color: white;
-    width: 100%;
-    height: 50px;
-    border-radius: 2px;
-    box-shadow: 0 1px 1px 0;
-=======
-.seconddiv {
   position: relative;
   background-color: white;
   width: 100%;
   height: 50px;
   border-radius: 2px;
   box-shadow: 0 1px 1px 0;
-}
->>>>>>> b0fd826 (complete of main page):public/css/tahlil2.css
+} */
 
-.navbar-brand {
+/* .navbar-brand {
   margin-left: 20px;
   font-weight: 900;
   position: fixed;
 }
 
-<<<<<<< HEAD:public/css/home.css
-} */
-
-/* .headenav {
-    display: flex;
-    gap: 30px;
-    position: fixed;
-    width: 100%;
-    background-color: #ffff;
-    z-index: 10;
-
-} */
-=======
 .weather-header {
   margin-left: 1390px;
   margin-right: 25px;
@@ -46,17 +23,21 @@
 .home-header {
   font-size: 15px;
   font-weight: bold;
-}
+} */
 
-.headenav {
+/* .headenav {
   display: flex;
   gap: 30px;
   position: fixed;
   width: 100%;
   background-color: #ffff;
   z-index: 1;
+} */
+
+.headenav {
+  font-size: larger;
+  font-weight: bold;
 }
->>>>>>> b0fd826 (complete of main page):public/css/tahlil2.css
 
 .livesearch {
   position: absolute;
@@ -121,48 +102,6 @@
   font-weight: 40px;
 }
 
-<<<<<<< HEAD:public/css/home.css
-/* .linkdiv {
-    font-size: 25px;
-    text-decoration: none;
-    padding: 5px 5px;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-} */
-
-/* #linkone {
-    margin-left: 1200px;
-} */
-
-.nav-item {
-    font-size: large;
-}
-
-.buttondiv {
-    text-decoration: none;
-    text-align: center;
-    border-radius: 15px;
-    min-width: 100px;
-    background-color: white;
-    border-color: #499;
-    border-style: solid;
-    color: #333;
-    font-weight: bold;
-    font-size: 25px;
-}
-
-.thirddiv {
-    background-image: url(/assets/image/train.png);
-    width: 1000px;
-    height: 500px;
-    margin-top: 80px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-    margin-left: 258px;
-
-=======
 .linkdiv {
   font-size: 25px;
   text-decoration: none;
@@ -186,7 +125,7 @@
 }
 
 .thirddiv {
-  background-image: url(../assets/train.png);
+  background-image: url(../assets/image/train.png);
   width: 1000px;
   height: 500px;
   margin-top: 60px;
@@ -194,7 +133,6 @@
   background-size: cover;
   border-radius: 10px;
   margin-left: 258px;
->>>>>>> b0fd826 (complete of main page):public/css/tahlil2.css
 }
 
 .forthdiv {
@@ -255,13 +193,14 @@ details {
   display: block;
 }
 
-.fifthdiv {
+/* .fifthdiv {
   direction: rtl;
-}
+} */
 
 .fifthdiv {
+  direction: rtl;
   width: 100%;
-  height: 80px;
+  /* height: 80px; */
   position: relative;
   justify-items: center;
 }
@@ -286,6 +225,7 @@ details {
 }
 
 .qoestionfirst {
+  position: relative;
   width: 100%;
   height: 20px;
   line-height: 25px;
@@ -294,6 +234,7 @@ details {
 }
 
 .qoestiontwo {
+  position: relative;
   width: 100%;
   height: 20px;
   line-height: 25px;
@@ -302,6 +243,7 @@ details {
 }
 
 .qoestionthree {
+  position: relative;
   width: 100%;
   height: 20px;
 

@@ -23,11 +23,11 @@ router.get('/show-city', (req, res) => {
 
 router.get('/search-tickets', (req, res) => {
     const {source, destination, date, passengers} = req.query;
-    console.log(date);
     const select_ticket_query = `
         SELECT ticket.ticket_id, ticket.train_id, train.source_station, train.destination_station,
         train.train_name, train_scheduel.departure_date, train_scheduel.arrival_date,
-        train_scheduel.departure_time, train_scheduel.arrival_time,
+        TIME_FORMAT(train_scheduel.departure_time, "%H:%i") as departure_time,
+        TIME_FORMAT(train_scheduel.arrival_time, "%H:%i") as arrival_time,
         ticket.number_of_remaining_tickets, ticket.price
         FROM ticket, train, train_scheduel
         WHERE ticket.train_id = train.train_id
@@ -40,7 +40,6 @@ router.get('/search-tickets', (req, res) => {
             console.log(error);
         else {
             res.send(results);
-            console.log(results);
         }
     });
 });

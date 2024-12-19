@@ -41,42 +41,110 @@
 // });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const pagination = document.querySelector(".pagination");
-  const leftButton = document.querySelector(".left-btn");
-  const rightButton = document.querySelector(".right-btn");
-  const wrapperWidth = document.querySelector(
+    const pagination = document.querySelector(".pagination");
+    const leftButton = document.querySelector(".left-btn");
+    const rightButton = document.querySelector(".right-btn");
+    const wrapperWidth = document.querySelector(
     ".pagination-wrapper"
-  ).offsetWidth;
-  let currentOffset = 0;
-  const step = 100; // مقدار حرکت در هر کلیک (پیکسل)
-  const maxOffset = 0;
-  const minOffset = -(pagination.scrollWidth - wrapperWidth);
+    ).offsetWidth;
+    let currentOffset = 0;
+    const step = 100; // مقدار حرکت در هر کلیک (پیکسل)
+    const maxOffset = 0;
+    const minOffset = -(pagination.scrollWidth - wrapperWidth);
 
-  function updateButtons() {
-    leftButton.disabled = currentOffset >= maxOffset;
-    rightButton.disabled = currentOffset <= minOffset;
-  }
-
-  leftButton.addEventListener("click", () => {
-    if (currentOffset < maxOffset) {
-      currentOffset += step;
-      pagination.style.transform = `translateX(${currentOffset}px)`;
+    function updateButtons() {
+        leftButton.disabled = currentOffset >= maxOffset;
+        rightButton.disabled = currentOffset <= minOffset;
     }
-    updateButtons();
-  });
 
-  rightButton.addEventListener("click", () => {
-    if (currentOffset > minOffset) {
-      currentOffset -= step;
-      pagination.style.transform = `translateX(${currentOffset}px)`;
-    }
-    updateButtons();
-  });
+    leftButton.addEventListener("click", () => {
+        if (currentOffset < maxOffset) {
+            currentOffset += step;
+            pagination.style.transform = `translateX(${currentOffset}px)`;
+        }
+        updateButtons();
+    });
 
-  // تنظیم دکمه‌ها در بارگذاری اولیه
-  updateButtons();
+    rightButton.addEventListener("click", () => {
+        if (currentOffset > minOffset) {
+            currentOffset -= step;
+            pagination.style.transform = `translateX(${currentOffset}px)`;
+        }
+        updateButtons();
+    });
+
+    // تنظیم دکمه‌ها در بارگذاری اولیه
+    updateButtons();
 });
 
-const param = new URLSearchParams(window.location.search);
-const traveldate = param.get("23-01-2023");
-document.write(traveldate);
+// const param = new URLSearchParams(window.location.search);
+// const traveldate = param.get("23-01-2023");
+// document.write(traveldate);
+
+const queryParams = new URLSearchParams(window.location.search);
+const source = queryParams.get('source');
+const destination = queryParams.get('destination');
+const date = queryParams.get('date');
+const passengers = queryParams.get('passengers');
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(`ajax/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById('box1');
+            if (data.length === 0) {
+                resultsDiv.innerHTML = '<p>قطاری برای تاریخ مورد یافت نشد</p>';
+            }
+            else {
+                data.forEach(train => {
+                    const trainDiv = document.createElement('div');
+                    trainDiv.innerHTML = `
+                        <div class="child1">
+                            <div class="child7">
+                                <span class="text3">
+                                    <b>${train.departure_time}</b>
+                                </span>
+                                <span class="text2">
+                                    ${train.source_station}
+                                </span>
+                            </div>
+                            <div class="child9">
+                                <span class="text5">
+                                    <b>
+                                        ${train.arrival_time}
+                                    </b>
+                                </span>
+                                <span class="text4">
+                                    ${train.destination_station}
+                                </span>
+                            </div>
+                            <div class="child6">
+                                <img  class="imgg"  src="./assets/image/tt.jpg" alt="no img">
+                            </div>
+                            <div class="child2">
+                                <div class="child3">
+                                    <span class="textbold">
+                                    ${train.price}
+                                    </span>
+                                </div>
+                                <button class="child4" onclick="select_train(${train.ticket_id})">
+                                انتخاب بلیط
+                                </button>
+                                <div class="child5">
+                                    <p class="text1">
+                                    ${train.number_of_remaining_tickets} :صندلی باقی مانده 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    resultsDiv.appendChild(trainDiv);
+                });
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+function select_train(ticket_id) {
+    window.location.href = `/reserve.html?ticketId=${ticket_id}&passengers=${passengers}`;
+}
