@@ -56,7 +56,8 @@ document.getElementById('form').addEventListener('submit', async (event) => {
 
     const source = document.getElementById("input1").value.trim();
     const destination = document.getElementById("input2").value.trim();
-    const date = document.getElementById("input3").value.trim();
+    const unformattedDate = document.getElementById("input3").value.trim();
+    const date = unformattedDate.replace(/\//g, '-');
     const passengers = document.getElementById("input4").value.trim();
 
     const firstError = document.getElementById("firstError");
