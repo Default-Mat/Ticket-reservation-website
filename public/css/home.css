@@ -34,9 +34,15 @@
   z-index: 1;
 } */
 
+main {
+  padding-bottom: 50px;
+  background-color: #fefefe;
+}
+
 .headenav {
   font-size: 18px;
   font-weight: bold;
+  box-shadow: 0px 2px 5px #b7b7b7;
 }
 
 .livesearch {
@@ -144,30 +150,36 @@
   background-color: white;
   border-radius: 15px;
   z-index: 1;
-  border-color: #333;
-  border-style: groove;
+  border-color: #9f9f9f;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0px 2px 5px #b7b7b7;
 }
 
 .texts {
   border-style: solid;
-  border-color: gray;
-  background-color: rgb(241, 241, 241);
+  border-width: 1px;
+  border-color: #9f9f9f;
+  /* border-color: gray; */
+  background-color: white;
   width: 95%;
   margin-top: 50px;
   border-radius: 5px;
   padding: 30px 30px;
-  box-shadow: 0 5px 5px 0 gray;
+  box-shadow: 0px 2px 5px #b7b7b7;
 }
 
 .textss {
   border-style: solid;
-  border-color: gray;
-  background-color: rgb(241, 241, 241);
+  border-width: 1px;
+  border-color: #9f9f9f;
+  /* border-color: gray; */
+  background-color: white;
   width: 95%;
   margin-top: 50px;
   border-radius: 5px;
   padding: 30px 30px;
-  box-shadow: 0 5px 5px 0 gray;
+  box-shadow: 0px 2px 5px #b7b7b7;
 }
 
 .textone {
@@ -203,6 +215,7 @@ details {
   /* height: 80px; */
   position: relative;
   justify-items: center;
+  padding-bottom: 70px;
 }
 
 .input {
@@ -222,33 +235,45 @@ details {
 
 .bodytext {
   grid-row: 20px;
+  margin-bottom: 50px;
+}
+
+.bodytext p {
+  margin-top: 30px;
 }
 
 .qoestionfirst {
   position: relative;
   width: 100%;
-  height: 20px;
+  height: 30px;
   line-height: 25px;
-  margin: 70px 50px;
+  /* margin: 70px 50px; */
+  margin-top: 50px;
+  padding: 50px 50px;
   font-size: 25px;
 }
 
 .qoestiontwo {
   position: relative;
   width: 100%;
-  height: 20px;
+  height: 30px;
   line-height: 25px;
-  margin: 71px 50px;
+  /* margin: 71px 50px; */
+  margin-top: 50px;
+  padding: 50px 50px;
   font-size: 25px;
 }
 
 .qoestionthree {
   position: relative;
   width: 100%;
-  height: 20px;
+  height: 30px;
 
-  margin: 50px 50px;
+  /* margin: 50px 50px; */
+  margin-top: 50px;
+  padding: 50px 50px;
   font-size: 25px;
   line-height: 25px;
 }
+
  

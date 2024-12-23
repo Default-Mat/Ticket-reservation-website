@@ -13,14 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">${email}</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/auth/signout">خروج از حساب</a></li>
+                            <li><a class="dropdown-item" id="signout" href="">خروج از حساب</a></li>
                         </ul>
                     </li>
                 </ul>
             `);
+
+        document.getElementById('signout').addEventListener('click', async event => {
+            event.preventDefault();
+            const response = await fetch('/auth/signout');
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                    window.location.reload();
+                }
+                else {
+                    alert('An error occured while signing you out');
+                }
+            }
+            else {
+                console.error('Request Failed');
+            }
+        });
     } 
     else {
-       document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin',
-        '<ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="authentication.html">ثبت نام و ورود</a></li></ul>'); 
+        document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin',
+        '<ul class="navbar-nav"><li class="nav-item"><a class="nav-link" id="signin" href="">ثبت نام و ورود</a></li></ul>'); 
+        
+        document.getElementById('signin').addEventListener('click', event => {
+            event.preventDefault();
+            sessionStorage.setItem('original_url', window.location.href);
+            window.location.href = '/authentication.html';
+        });
     }
 });

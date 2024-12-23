@@ -1,5 +1,5 @@
 -- -----------------------------------------------------
--- Schema ticket_db
+-- Schema ticket_web
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
@@ -18,10 +18,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `user` (
   `email` VARCHAR(45) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `phone_number` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  `password` VARCHAR(120) NOT NULL,
+  `phone_number` VARCHAR(45) NULL,
   `role` ENUM("admin", "user") NOT NULL,
   PRIMARY KEY (`email`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)

@@ -62,7 +62,7 @@ document.getElementById('codeform').addEventListener('submit', async (event) => 
         if (response.ok) {
             const data = await response.json();
             if (data.success) {
-                window.location.href = data.redirectTo;
+                window.location.href = sessionStorage.getItem('original_url');
             }
             else {
                 alert(data.message);
