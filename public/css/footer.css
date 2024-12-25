@@ -1,6 +1,7 @@
 footer {
   border-top: solid 1px #d4d4d4;
   padding-top: 30px;
+  direction: ltr;
 }
 
 ul {
@@ -13,11 +14,6 @@ ul {
   margin: 3px;
   padding: 3px;
 }
-
-/* body {
-  font-size: 14px;
-  margin-top: 0px;
-} */
 
 footer h2,
 footer h3 {

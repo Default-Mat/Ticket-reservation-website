@@ -46,23 +46,55 @@ router.post('/check-price', (req, res) => {
     }
 
     const total_passengers = idnum.length;
-    const select_ticket = 'SELECT available_tickets, price FROM ticket WHERE ticket_id = ?';
+    const select_ticket = `
+        SELECT ticket.ticket_id, ticket.train_id,
+        c1.city_name AS source_station, c2.city_name AS destination_station,
+        train.train_name, train.train_type,
+        DATE_FORMAT(train_schedule.departure_date, "%Y-%m-%d") AS departure_date,
+        DATE_FORMAT(train_schedule.arrival_date, "%Y-%m-%d") AS arrival_date,
+        TIME_FORMAT(train_schedule.departure_time, "%H:%i") AS departure_time,
+        TIME_FORMAT(train_schedule.arrival_time, "%H:%i") AS arrival_time,
+        ticket.available_tickets, ticket.price
+        FROM ticket, train, train_schedule, city AS c1, city AS c2
+        WHERE ticket.train_id = train.train_id
+        AND train.schedule_id = train_schedule.schedule_id
+        AND train.source_station = c1.city_id AND train.destination_station = c2.city_id
+        AND ticket.ticket_id = ?;
+    `;
     db.query(select_ticket, [ticketId], (error, result) => {
         if (error) {
             console.log(error);
         }
         else {
-            const {available_tickets, price} = result[0];
+            const {ticket_id, train_id, source_station,
+                 destination_station, train_name, train_type,
+                 departure_date, arrival_date,
+                 departure_time, arrival_time,
+                 available_tickets, price} = result[0];
+
             if (available_tickets >= total_passengers) {
-                const total_price = price * total_passengers;
-                const res_data = {
-                    gender,
-                    firstname,
-                    lastname,
-                    idnum,
-                    birthdate,
-                    ticketId,
-                    price: total_price
+                const totalPrice = price * total_passengers;
+                const res_data = {passengers: []};
+                for (let i = 0; i < total_passengers; i++) {
+                    const passen = {
+                        ageRange: "بزرگسال",
+                        gender: gender[i],
+                        firstname: firstname[i],
+                        lastname: lastname[i],
+                        idnum: idnum[i],
+                        birthdate: birthdate[i],
+                        services: "بدون سرویس",
+                        serviceAmount: "0",
+                        price,
+                    };
+                    res_data.passengers.push(passen);
+                }
+                res_data.ticketInfo = {
+                    ticket_id, train_id, source_station,
+                    destination_station, train_name, train_type,
+                    departure_date, arrival_date,
+                    departure_time, arrival_time,
+                    ticketId, totalPrice
                 };
                 res.cookie('passengers', JSON.stringify(res_data), {
                     httpOnly: false, // allow client-side access

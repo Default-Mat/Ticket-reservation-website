@@ -1,45 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const pagination = document.querySelector(".pagination");
-//   const items = pagination.querySelectorAll(".page-item");
-//   const prevButton = pagination.querySelector("[aria-label='Previous']");
-//   const nextButton = pagination.querySelector("[aria-label='Next']");
-//   let currentIndex = 0;
-
-//   // تابع برای به‌روزرسانی انتخاب
-//   function updateActiveItem(newIndex) {
-//     items[currentIndex + 1].classList.remove("active"); // حذف کلاس active از آیتم قبلی
-//     currentIndex = newIndex;
-//     items[currentIndex + 1].classList.add("active"); // افزودن کلاس active به آیتم جدید
-//   }
-
-//   // مدیریت کلیک دکمه قبلی
-//   prevButton.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     if (currentIndex > 0) {
-//       updateActiveItem(currentIndex - 1);
-//     }
-//   });
-
-//   // مدیریت کلیک دکمه بعدی
-//   nextButton.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     if (currentIndex < items.length - 3) {
-//       // به‌جز دکمه قبلی و بعدی
-//       updateActiveItem(currentIndex + 1);
-//     }
-//   });
-
-//   // افزودن رویداد کلیک به هر آیتم
-//   items.forEach((item, index) => {
-//     if (index !== 0 && index !== items.length - 1) {
-//       // به‌جز دکمه قبلی و بعدی
-//       item.addEventListener("click", () => {
-//         updateActiveItem(index - 1);
-//       });
-//     }
-//   });
-// });
-
 // Parameters from the previous page
 const queryParams = new URLSearchParams(window.location.search);
 const source = queryParams.get('source');
@@ -126,12 +84,12 @@ document.querySelectorAll('.page-item').forEach(item => {
     item.addEventListener('click', event => {
         const date = event.target.innerHTML;
         const queryParams = new URLSearchParams({ source, destination, date, passengers }).toString();
-        window.location.href = `/main_page.html?${queryParams}`;
+        window.location.href = `/train-tickets.html?${queryParams}`;
     });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch(`ajax/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
+    fetch(`/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
         .then(response => response.json())
         .then(data => {
             const resultsDiv = document.getElementById('box1');
@@ -197,5 +155,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function select_train(ticket_id) {
-    window.location.href = `/user_page.html?ticketId=${ticket_id}&passengers=${passengers}`;
+    window.location.href = `/passengers.html?ticketId=${ticket_id}&passengers=${passengers}`;
 }

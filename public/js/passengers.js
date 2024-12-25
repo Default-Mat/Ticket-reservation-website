@@ -1,14 +1,3 @@
-// let usernameInput = document.querySelector(".username");
-// let lastnameInput = document.querySelector(".lastname");
-// let numberInput = document.querySelector(".id-Number");
-// let datetimeInput = document.querySelector(".datetime");
-// let buttonin = document.querySelector(".button-Valid-main");
-
-// let usernameMessage = document.querySelector(".username-Validation");
-// let lastnameMessage = document.querySelector(".lastname-Validation");
-// let numberMessage = document.querySelector(".id-Number-Validation");
-// let datetimeMessage = document.querySelector(".datetime-Validation");
-
 function input_validation(input, fieldtype) {
   const value = input.value.trim();
   let errorMessage = '';
@@ -67,71 +56,6 @@ function input_validation(input, fieldtype) {
   return valid;
 }
 
-// function userValid(element) {
-//   const siblings = Array.from(element.parentNode.children);
-//   usernameMessage = siblings.find(sibling => sibling !== element && sibling.classList.contains('username-Validation')) || null;
-//   if (element.value.length < 3) {
-//     usernameMessage.innerHTML = "اسم شما باید بیش از سه حرف باشد";
-//     usernameMessage.style.color = "red";
-//     usernameMessage.style.display = "block";
-//   } else {
-//     usernameMessage.innerHTML = "";
-//   }
-// }
-// function lastnameValid(element) {
-//   if (lastnameInput.value.length < 3) {
-//     lastnameMessage.innerHTML = "فامیلی شما باید بیش از سه حرف باشد";
-//     lastnameMessage.style.color = "red";
-//     lastnameMessage.style.display = "block";
-//   } else {
-//     lastnameMessage.innerHTML = "";
-//   }
-// }
-// function numberValid() {
-//   if (numberInput.value.length < 10) {
-//     numberMessage.innerHTML = "کد ملی شما صحیح نیست";
-//     numberMessage.style.color = "red";
-//     numberMessage.style.display = "block";
-//   } else {
-//     numberMessage.innerHTML = "";
-//   }
-// }
-// function dateValid() {
-//   if (datetimeInput.value.length < 3) {
-//     datetimeMessage.innerHTML = "تاریخ درست را وارد کنید";
-//     datetimeMessage.style.color = "red";
-//     datetimeMessage.style.display = "block";
-//   } else {
-//     datetimeMessage.innerHTML = "";
-//   }
-// }
-
-// function validation() {
-//   let usernameValue = usernameInput.value;
-//   let lastnameValue = lastnameInput.value;
-//   let numberValue = numberInput.value;
-//   let datetimeValue = datetimeInput.value;
-
-//   if (
-//     usernameValue.length < 3 ||
-//     lastnameValue.length < 3 ||
-//     numberValue < 10 ||
-//     datetimeValue.length < 3
-//   ) {
-//     buttonin.style.color = "red";
-
-//     setTimeout(function () {
-//       buttonin.style.color = "rgb(49, 53, 56)";
-//     }, 2000);
-//   } else {
-//     buttonin.style.color = "rgb(26, 115, 183)";
-
-//     setTimeout(function () {
-//       buttonin.style.color = "rgb(49, 53, 56)";
-//     }, 2000);
-//   }
-// }
-
 const queryParams = new URLSearchParams(window.location.search);
 const ticketId = queryParams.get('ticketId');
 const passengers = queryParams.get('passengers');
@@ -161,17 +85,6 @@ const newPassenger = `
           <span id="delete">حذف</span>
         </button>
       </div>
-      <!-- <div class="information-CC">
-        <input type="radio" id="iran" name="Nationality" value="iranian" />
-        <label for="iranian">ایرانی</label><br />
-        <input
-          type="radio"
-          id="foreign"
-          name="Nationality"
-          value="foreigner"
-        />
-        <label for="foreigner">اتباع خارجه</label><br />
-      </div> -->
       <div class="input-fields">
         <div class="input-cont">
           <input
@@ -196,7 +109,7 @@ const newPassenger = `
         <div class="input-cont">
           <input
           name="idnum[]"
-          type="number"
+          type="text"
           placeholder="کد ملی"
           class="idnum input"
           onchange="input_validation(this, 'idnum')"
@@ -211,6 +124,7 @@ const newPassenger = `
           class="birthdate input"
           data-jdp
           data-jdp-only-date
+          autocomplete="off"
           onchange="input_validation(this, 'birthdate')"
           />
           <span class="datetime-Validation validation"></span>
@@ -220,10 +134,10 @@ const newPassenger = `
     </div>
   `;
 
-  const addPassenger_button = `
-    <button type="button" id="addPassenger"
-    onclick="add_passenger(this)">+اضافه کردن مسافر جدید</button>
-  `;
+const addPassenger_button = `
+  <button type="button" class="btn btn-outline-primary" id="addPassenger"
+  onclick="add_passenger(this)">+اضافه کردن مسافر جدید</button>
+`;
 
 document.addEventListener('DOMContentLoaded', () => {
   const passengersDiv = document.getElementById('passengers');
@@ -264,7 +178,7 @@ function getCookie(name) {
   return null; // Return null if cookie not found
 }
 
-document.getElementById('reservationForm').addEventListener('submit', async (e) => {
+document.getElementById('button-valid').addEventListener('click', async (e) => {
   e.preventDefault();
   let proceed = true;
   document.querySelectorAll('.input').forEach(input => {
@@ -275,7 +189,8 @@ document.getElementById('reservationForm').addEventListener('submit', async (e) 
     }
   });
   if (proceed){
-    const formData = new FormData(e.target);
+    const form = document.getElementById('reservationForm');
+    const formData = new FormData(form);
     const data = Array.from(formData.entries())
       .reduce((acc, [key, value]) => {
         const keyName = key.replace('[]', '');
@@ -293,9 +208,7 @@ document.getElementById('reservationForm').addEventListener('submit', async (e) 
     });
 
     if (response.ok) {
-      // var passengers = getCookie('passengers')
-      // console.log(passengers);
-      window.location.href = '/last_page.html';
+      window.location.href = '/confirm.html';
     } else {
       response.text().then(errorMessage => {
         alert(errorMessage);
