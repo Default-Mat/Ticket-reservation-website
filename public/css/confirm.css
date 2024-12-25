@@ -146,3 +146,38 @@ main {
   color: #3030f9;
   font-size: larger;
 }
+
+#contact {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin-right: 100px;
+}
+
+.lab-in {
+  display: flex;
+}
+
+.lab-in label {
+  margin-left: 10px;
+}
+
+.in-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.validation {
+  text-align: center;
+}
+
+.email-validation{
+  position: absolute;
+  right: 370px;
+}
+
+.phone-validation {
+  position: absolute;
+  left: 410px;
+}

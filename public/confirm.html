@@ -114,18 +114,24 @@
             اطلاعات بلیط و اطلاع رسانی بعدی به این ادرس ارسال شود
           </p>
           <div class="conatiner">
-            <div class="row">
-              <div class="col">
-                <label for="email" class="email-third-div">ایمیل:</label>
-                <input type="text" id="email" name="email" />
+            <div id="contact">
+              <div class="in-area">
+                <div class="lab-in">
+                  <label for="email" class="email-third-div">ایمیل:</label>
+                  <input type="text" id="email" name="email" onchange="input_validation(this, 'email', '.email-validation');"/>
+                </div>
               </div>
-              <div class="col">
-                <label for="phone-text" class="phone-text-third-div">
-                  شماره همراه:</label
-                >
-                <input type="text" id="phone-text" name="phone-text" />
+              <div class="in-area">
+                <div class="lab-in">
+                  <label for="phone-text" class="phone-text-third-div">
+                    شماره همراه:</label
+                  >
+                  <input type="text" id="phone-text" name="phone-text" onchange="input_validation(this, 'phone', '.phone-validation');"/>
+                </div>
               </div>
             </div>
+            <span class="email-validation validation"></span>
+            <span class="phone-validation validation"></span>
           </div>
         </div>
         <div class="fourth-div">

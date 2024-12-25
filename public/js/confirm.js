@@ -7,7 +7,41 @@ function getCookie(name) {
       }
     }
     return null; // Return null if cookie not found
+}
+
+function input_validation(input, fieldtype, validationClass) {
+  const value = input.value.trim();
+  let errorMessage = '';
+  let valid = true;
+  validationSpan = document.querySelector(validationClass);
+
+
+  // Validation rules based on the field type
+  switch (fieldtype) {
+    case 'email':
+      if (!value) {
+        errorMessage = 'لطفا ایمیل خود را وارد کنید';
+        valid = false;
+      }
+      break;
+
+    case 'phone':
+      if (!value) {
+        errorMessage = 'لطفا شماره همراه خود را وارد کنید';
+        valid = false;
+      }
+      break;
+
+    default:
+      errorMessage = 'فیلد نامعتبر است.';
+      valid = false;
   }
+
+  validationSpan.innerHTML = errorMessage;
+  validationSpan.style.color = "red";
+  validationSpan.style.display = "block";
+  return valid;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const ticket_data = JSON.parse(getCookie('passengers'));
@@ -74,5 +108,34 @@ document.querySelector('.second-button').addEventListener('click', event => {
 
 document.querySelector('.button-second-div').addEventListener('click', event => {
   window.history.back();
+});
+
+document.querySelector('.first-button').addEventListener('click', async event => {
+  const email = document.getElementById('email');
+  const phone_number = document.getElementById('phone-text');
+
+  email_validation = input_validation(email, 'email', '.email-validation');
+  phone_validation = input_validation(phone_number, 'phone', '.phone-validation');
+  if (email_validation && phone_validation) {
+    const ticket_data = JSON.parse(getCookie('passengers'));
+    ticket_data.ticketInfo.email = email.value;
+    ticket_data.ticketInfo.phoneNumber = phone_number.value;
+    ticket_data.ticketInfo.serviceType = 'بدون سرویس';
+
+    const response = await fetch('/submit-passengers/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ticket_data),
+    });
+
+    if (response.ok) {
+      window.location.href = '/purchased-ticket.html';
+    } else {
+      response.text().then(errorMessage => {
+        alert(errorMessage);
+      });
+    }
+  }
+
 });
   
