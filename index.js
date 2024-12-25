@@ -34,6 +34,7 @@ app.use(cookie_parser());
 app.use('/', require('./routes/pages'))
 app.use('/ajax', require('./routes/show-city'));
 app.use('/auth', require('./routes/auth'));
+app.use('/submit-passengers', require('./routes/submit-passengers'));
 
 // Server starts listening
 app.listen(3000, () => {

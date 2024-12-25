@@ -197,5 +197,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function select_train(ticket_id) {
-    window.location.href = `/reserve.html?ticketId=${ticket_id}&passengers=${passengers}`;
+    window.location.href = `/user_page.html?ticketId=${ticket_id}&passengers=${passengers}`;
 }

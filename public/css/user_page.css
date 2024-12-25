@@ -1,0 +1,230 @@
+body {
+  background-color: rgb(231, 230, 230);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .form { */
+  /* position: absolute;
+  margin-top: 300px; */
+  /* margin-left: 145px; */
+  /* margin-left: 50%;
+  transform: translate(-50%); */
+  /* display: flex;
+  justify-content: space-between; */
+  /* gap: 15px; */
+  /* width: 850px; */
+  /* height: 40px; */
+/* } */
+
+#reservationForm {
+  position: relative;
+  width: 1000px;
+  /* min-height: 500px; */
+  background-color: rgb(255, 255, 255);
+  /* padding: 50px; */
+  margin-bottom: 50px;
+  margin-top: 50PX;
+  border-radius: 5px;
+  /* margin-top: 100px;
+  margin-left: 240px; */
+}
+.input-cont {
+  position: relative;
+}
+.validation {
+  display: none;
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  top: 80%;
+  margin-right: 50%;
+  transform: translate(50%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+#passengers {
+  padding-bottom: 50px;
+}
+/* .username-Validation {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 200px;
+  font-size: 13px;
+}
+.lastname-Validation {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 187px;
+  font-size: 13px;
+}
+
+.id-Number-Validation {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 395px;
+  font-size: 13px;
+}
+.datetime-Validation {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 560px;
+  font-size: 13px;
+} */
+
+/* .username {
+  border-color: black;
+  size: 50px;
+  border-radius: 2px;
+  background-color: rgb(231, 230, 230);
+  direction: rtl;
+}
+
+.lastname {
+  border-color: black;
+  size: 50px;
+  border-radius: 2px;
+  background-color: rgb(231, 230, 230);
+  direction: rtl;
+}
+.id-Number {
+  border-color: black;
+  size: 50px;
+  border-radius: 2px;
+  background-color: rgb(231, 230, 230);
+  direction: rtl;
+}
+.datetime {
+  border-color: black;
+  size: 50px;
+  border-radius: 2px;
+  background-color: rgb(231, 230, 230);
+  direction: rtl;
+  font-size: 15px;
+} */
+
+.input-fields {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: flex-end; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  /* height: 200px; */
+  width: 800px;
+}
+
+.input {
+  border-color: black;
+  size: 50px;
+  border-radius: 5px;
+  background-color: rgb(244, 244, 244);
+  direction: rtl;
+  padding: 10px 10px;
+  margin: 20px 0px;
+  font-size: 16px;
+}
+
+.information {
+  /* position: absolute; */
+  direction: rtl;
+  /* top: 5px;
+  right: 10px; */
+  margin-right: 50px;
+  margin-bottom: 100px;
+  font-size: 30px;
+}
+.information-C {
+  direction: rtl;
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  /* position: absolute;
+  top: 120px;
+  right: 130px; */
+  margin-right: 100px;
+  margin-bottom: 50px;
+  font-size: 21px;
+}
+.information-CC {
+  direction: rtl;
+  /* position: absolute;
+  top: 120px;
+  right: 380px; */
+  font-size: 21px;
+}
+
+#addPassenger {
+  /* width: 82px; */
+  height: 30px;
+  border-style: solid;
+  box-shadow: 1 rgb(127, 127, 127);
+  border-color: rgb(136, 134, 133);
+  background-color: #ffff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: rgb(49, 53, 56);
+  margin-right: 100px;
+}
+
+.footer-main-div {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.button-Valid {
+  /* position: absolute;
+  top: 450px;
+  left: 146px; */
+  width: 100px;
+  height: 100px;
+}
+.button-Valid-main {
+  width: 82px;
+  height: 30px;
+  border-style: solid;
+  box-shadow: 1 rgb(127, 127, 127);
+  border-color: rgb(136, 134, 133);
+  background-color: #ffff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: rgb(49, 53, 56);
+}
+
+.right-div {
+  direction: rtl;
+  /* position: absolute;
+  top: 458px;
+  left: 692px; */
+  font-size: 18px;
+  color: rgb(49, 53, 56);
+}
+
+hr {
+  width: 850px;
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: rgb(221, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+}
