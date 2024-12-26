@@ -92,12 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
         .then(response => response.json())
         .then(data => {
-            const resultsDiv = document.getElementById('box1');
+            const resultsDiv = document.getElementById('result-div');
             if (data.length === 0) {
                 resultsDiv.innerHTML = `
                     <div class="search-error">
                         <img src="./assets/image/system-error.png" alt="search error">
-                        <h2>قطاری برای تاریخ مورد یافت نشد</h2>
+                        <h2>قطاری برای تاریخ مورد نظر یافت نشد</h2>
                     </div>
                 `;
             }
@@ -132,9 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="child2">
                                 <div class="child3">
-                                    <span class="textbold">
+                                    <div>
+                                    ریال
+                                    </div>
+                                    <div class="textbold">
                                     ${train.price}
-                                    </span>
+                                    </div>
                                 </div>
                                 <button class="child4" onclick="select_train(${train.ticket_id})">
                                 انتخاب بلیط
