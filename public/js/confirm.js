@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     table_data[0].textContent = ticketInfo.source_station;
     table_data[1].textContent = ticketInfo.destination_station;
     table_data[2].textContent = `${ticketInfo.departure_date} - ${ticketInfo.departure_time}`;
-    table_data[3].textContent = 'نامشخص';
+    table_data[3].textContent = ticketInfo.wagon_number;
     table_data[4].textContent = ticketInfo.train_type;
     table_data[5].textContent = 'خیر';
 });

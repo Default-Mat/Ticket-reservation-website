@@ -13,7 +13,7 @@ const db = mysql.createConnection({
 router.get('/', (req, res) => {
     const {source, destination, date, passengers} = req.query;
     const select_ticket_query = `
-        SELECT ticket.ticket_id, ticket.train_id,
+        SELECT ticket.ticket_id, ticket.train_id, ticket.wagon_number,
         c1.city_name AS source_station, c2.city_name AS destination_station,
         train.train_name, train.train_type,
         train_schedule.departure_date, train_schedule.arrival_date,

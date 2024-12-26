@@ -82,6 +82,7 @@ AUTO_INCREMENT = 10000;
 CREATE TABLE IF NOT EXISTS `ticket` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
   `train_id` INT NOT NULL,
+  `wagon_number` INT NOT NULL,
   `available_tickets` INT NOT NULL,
   `price` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ticket_id`),
@@ -193,4 +194,28 @@ CREATE TABLE IF NOT EXISTS `vertification_code` (
   `code` VARCHAR(45) NOT NULL,
   `created_at` DATETIME NOT NULL,
   PRIMARY KEY (`email`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `seat_allocation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `seat_allocation` (
+  `seat_id` INT NOT NULL AUTO_INCREMENT,
+  `ticket_id` INT NOT NULL,
+  `tracing_code` INT NULL,
+  `seat_number` INT NOT NULL,
+  PRIMARY KEY (`seat_id`),
+  INDEX `ticket_id_fk_idx` (`ticket_id` ASC) VISIBLE,
+  INDEX `tracing_code_fk_idx` (`tracing_code` ASC) VISIBLE,
+  CONSTRAINT `seat_ticket_id_fk`
+    FOREIGN KEY (`ticket_id`)
+    REFERENCES `ticket` (`ticket_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `seat_tracing_code_fk`
+    FOREIGN KEY (`tracing_code`)
+    REFERENCES `purchased_ticket` (`tracing_code`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
