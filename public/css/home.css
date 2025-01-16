@@ -1,3 +1,7 @@
+* {
+  font-family: Alibaba;
+}
+
 main {
   padding-bottom: 50px;
   background-color: #fefefe;
@@ -113,38 +117,6 @@ main {
   box-shadow: 0px 2px 5px #b7b7b7;
 }
 
-.texts {
-  border-radius: 8px;
-  border-color: #cfcfcf;
-  border-style: solid;
-  border-width: 1px;
-  background-color: white;
-  width: 95%;
-  margin-bottom: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px 30px;
-  box-shadow: 0px 2px 5px #b7b7b7;
-}
-
-.textss {
-  border-radius: 8px;
-  border-color: #cfcfcf;
-  border-style: solid;
-  border-width: 1px;
-  background-color: white;
-  width: 95%;
-  margin-bottom: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px 30px;
-  box-shadow: 0px 2px 5px #b7b7b7;
-}
-
-.textone {
-  line-height: 50px;
-}
-
 .headspan {
   position: relative;
   display: flex;
@@ -162,13 +134,6 @@ main {
 
 details {
   display: block;
-}
-
-.fifthdiv {
-  direction: rtl;
-  width: 100%;
-  position: relative;
-  padding-bottom: 70px;
 }
 
 .input {
@@ -193,11 +158,3 @@ details {
 .bodytext p {
   margin-top: 30px;
 }
-
-#accordion {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
- 

@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
 const cookie_parser = require('cookie-parser');
+const session = require('express-session');
 
 // .env file config
 dotenv.config({path: './process.env'});
@@ -29,6 +30,11 @@ app.use(express.json());
 app.use(express.static('public'));
 app.set('view engine', 'hbs');
 app.use(cookie_parser());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // routes
 app.use('/', require('./routes/pages'))

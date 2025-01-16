@@ -1,8 +1,14 @@
 function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + '=')) {
+        return decodeURIComponent(cookie.substring(name.length + 1));
+      }
+    }
+    return null; // Return null if cookie not found
 }
+
 // Check if the header is fully loaded
 const interval = setInterval(() => {
     const header = document.getElementById("collapsibleNavbar");
@@ -10,16 +16,14 @@ const interval = setInterval(() => {
         clearInterval(interval); // Stop checking once the element is found
         var email = getCookie('email');
         if (email) {
-            email = email.split('%40')[0];
-            document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin', `
-                    <ul class="navbar-nav" id="signout-cont">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">${email}</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" id="signout" href="">خروج از حساب</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+            email = email.split('@')[0];
+            document.getElementById('left-items').insertAdjacentHTML('afterbegin', `
+                    <li class="nav-item dropdown" id="signout-cont">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">${email}</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="signout" href="">خروج از حساب</a></li>
+                        </ul>
+                    </li>
                 `);
 
             document.getElementById('signout').addEventListener('click', async event => {
@@ -40,8 +44,8 @@ const interval = setInterval(() => {
             });
         } 
         else {
-            document.getElementById('collapsibleNavbar').insertAdjacentHTML('afterbegin',
-            '<ul class="navbar-nav" id="signin-cont"><li class="nav-item"><a class="nav-link" id="signin" href="">ثبت نام و ورود</a></li></ul>'); 
+            document.getElementById('left-items').insertAdjacentHTML('afterbegin',
+            '<li class="nav-item" id="signin-cont"><a class="nav-link" id="signin" href="">ثبت نام و ورود</a></li>'); 
             
             document.getElementById('signin').addEventListener('click', event => {
                 event.preventDefault();
