@@ -30,15 +30,13 @@
     <header include-html="header.html"></header>
 
     <main>
-      <form id="reservationForm">
+      <form id="reservationForm" method="post" action="/submit-passengers/confirmation">
         <div class="information">
           <h3 id="text-info">مشخصات مسافران</h3>
         </div>
         <div id="passengers">
         </div>
-        <div type="submit" id="button-valid" class="btn btn-primary btn-lg">
-          تایید و ادامه خرید
-        </div>
+        <input type="submit" value="تایید و ادامه خرید" id="button-valid" class="btn btn-primary btn-lg">
       </form>
     </main>
 

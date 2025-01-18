@@ -25,7 +25,8 @@ const interval = setInterval(() => {
                         </ul>
                     </li>
                 `);
-
+            
+            // Add listener for 'خروج از حساب' button
             document.getElementById('signout').addEventListener('click', async event => {
                 event.preventDefault();
                 const response = await fetch('/auth/signout');
@@ -47,6 +48,7 @@ const interval = setInterval(() => {
             document.getElementById('left-items').insertAdjacentHTML('afterbegin',
             '<li class="nav-item" id="signin-cont"><a class="nav-link" id="signin" href="">ثبت نام و ورود</a></li>'); 
             
+            // Add listener for 'ورود و ثبت نام' button
             document.getElementById('signin').addEventListener('click', event => {
                 event.preventDefault();
                 sessionStorage.setItem('original_url', window.location.href);

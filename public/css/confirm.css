@@ -146,7 +146,7 @@ main {
   margin-bottom: 20px;
 }
 
-.number {
+#number {
   color: #3030f9;
   font-size: larger;
 }

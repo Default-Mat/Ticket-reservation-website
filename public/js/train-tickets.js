@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Listener for cotrolling date picker pagination
 document.addEventListener("DOMContentLoaded", () => {
     const pagination = document.querySelector(".pagination");
     const leftButton = document.querySelector(".left-btn");
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateButtons();
 });
 
+// Adding listener for every date button
 document.querySelectorAll('.page-item').forEach(item => {
     item.addEventListener('click', event => {
         const date = event.target.innerHTML;
@@ -88,11 +90,13 @@ document.querySelectorAll('.page-item').forEach(item => {
     });
 });
 
+//  Listener for showing tickets 
 document.addEventListener('DOMContentLoaded', () => {
     fetch(`/search-tickets?source=${source}&destination=${destination}&date=${date}&passengers=${passengers}`)
         .then(response => response.json())
         .then(data => {
             const resultsDiv = document.getElementById('result-div');
+            // If there was no ticket available
             if (data.length === 0) {
                 resultsDiv.innerHTML = `
                     <div class="search-error">
@@ -101,9 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             }
+            // If there are available tickets
             else {
+                // For each ticket, add an element
                 data.forEach(train => {
                     const trainDiv = document.createElement('div');
+                    // Ticket element
                     trainDiv.innerHTML = `
                         <div class="child1">
                             <div class="child7">
@@ -157,6 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error:', error));
 });
 
-function select_train(ticket_id) {
-    window.location.href = `/passengers.html?ticketId=${ticket_id}&passengers=${passengers}`;
+// handle the selected train ticket and redirect to passengers page
+async function select_train(ticket_id) {
+    const response = await fetch(`/submit-passengers/set-ticketid?ticketId=${ticket_id}`)
+    if (response.ok){
+        window.location.href = `/passengers.html?ticketId=${ticket_id}&passengers=${passengers}`;
+    }
+    else {
+        alert('خطای ارتباط با سرور');
+    }
 }

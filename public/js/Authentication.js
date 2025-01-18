@@ -1,6 +1,5 @@
+// Validate function for email field
 function validation(event) {
-  // Prevent default behavior of form submission
-  // event.preventDefault();
   let isvalid = true;
   const emailInput = document.getElementById("email").value.trim();
   const errorMessage = document.getElementById("error-message");
@@ -26,8 +25,4 @@ function validation(event) {
   else {
     sessionStorage.setItem('email', emailInput);
   }
-  // else {
-  //   isvalid = true;
-  //   window.location.href = "confirm_email.html";
-  // }
 }

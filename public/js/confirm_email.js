@@ -1,6 +1,7 @@
 const inputs = document.querySelectorAll('.input-confirm-email');
 const submit_button = document.getElementsByClassName('submit-input');
 
+// Listener for vertification code input field
 document.addEventListener('DOMContentLoaded', () => {
 
     inputs.forEach((input, index) => {
@@ -19,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// listener for 'ارسال مجدد کد' button
 document.getElementById('resend-code').addEventListener('click', async (event) => {
     event.preventDefault();
     const email = sessionStorage.getItem('email');
     try {
+        // Send request to server to resend code 
         const response = await fetch('/auth/resend-code?email='+email);
         if (response.ok) {
             const data = await response.json();
@@ -44,16 +47,18 @@ document.getElementById('resend-code').addEventListener('click', async (event) =
     }
 });
 
-
+// Listener for vertification form
 document.getElementById('codeform').addEventListener('submit', async (event) => {
     event.preventDefault();
     let code = '';
+    // Read the code from input field
     inputs.forEach(input => {
         code += input.value;
     });
     const email = sessionStorage.getItem('email');
 
     try{
+        // Post the entered code
         const response = await fetch('/auth/verify-code', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

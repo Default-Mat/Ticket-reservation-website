@@ -12,7 +12,7 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
-// send email to user
+// send vertification code to user's email
 function send_email(email, code) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -55,7 +55,6 @@ function send_new_ver_code(email, res) {
 }
 
 // genrate 5 digit random number as vertification code
-// const generate_code = () => Math.floor(10000 + Math.random() * 100000);
 function generate_code() {
     min = Math.ceil(10000);
     max = Math.floor(99999);
@@ -126,7 +125,6 @@ router.get('/signin', (req, res) => {
 router.get('/signout', (req, res) => {
     res.clearCookie('email');
     res.json({ success: true});
-    // res.redirect('/');
 });
 
 router.post('/verify-code', (req, res) => {

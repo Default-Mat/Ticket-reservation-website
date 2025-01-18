@@ -1,3 +1,4 @@
+// Show the list of cities that match with given input
 function city_search(str, inputId, containerId){
     const list_container = $(`#${containerId}`);
     const input_field = $(`#${inputId}`);
@@ -6,11 +7,11 @@ function city_search(str, inputId, containerId){
     }
     else{
         list_container.removeClass("hide");
-        var xmlhttp = new XMLHttpRequest();
 
+        // Use ajax to receive matched cities
+        var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "/ajax/show-city?city="+str, true);
         xmlhttp.send();
-
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var obj = JSON.parse(xmlhttp.responseText);
@@ -21,6 +22,7 @@ function city_search(str, inputId, containerId){
             }
         }
 
+        // Fill autocomplete list
         list_container.on('click', '.autocomplete-item', function() {
             input_field.val($(this).text());
             list_container.empty();

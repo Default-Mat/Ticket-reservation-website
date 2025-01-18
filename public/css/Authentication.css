@@ -1,3 +1,7 @@
+* {
+  font-family: Alibaba;
+}
+
 body {
   background-image: url(../assets/image/background\ Auth.jpg);
   background-repeat: no-repeat;

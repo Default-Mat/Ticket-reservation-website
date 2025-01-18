@@ -1,3 +1,4 @@
+// Listener for form validation
 document.getElementById('form').addEventListener('submit', async (event) => {
     event.preventDefault();
   

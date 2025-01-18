@@ -1,3 +1,4 @@
+// Validation function for email and phone number input fields
 function input_validation(input, fieldtype, validationClass) {
   const value = input.value.trim();
   let errorMessage = '';
@@ -32,89 +33,44 @@ function input_validation(input, fieldtype, validationClass) {
   return valid;
 }
 
+// If the user is logged in put the user's email value in email field
 document.addEventListener("DOMContentLoaded", () => {
-    const ticket_data = JSON.parse(getCookie('passengers'));
-    const ticketInfo = ticket_data.ticketInfo;
-
-    const table_header = document.querySelector('.table-first-div thead td');
-    table_header.textContent = ticketInfo.train_name;
-
-    const table_data = document.querySelectorAll('.table-first-div tbody td');
-    table_data[0].textContent = ticketInfo.source_station;
-    table_data[1].textContent = ticketInfo.destination_station;
-    table_data[2].textContent = `${ticketInfo.departure_date} - ${ticketInfo.departure_time}`;
-    table_data[3].textContent = ticketInfo.wagon_number;
-    table_data[4].textContent = ticketInfo.train_type;
-    table_data[5].textContent = 'خیر';
+  var email = getCookie('email');
+  if (email) {
+      document.getElementById('email').value = email;
+  }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const ticket_data = JSON.parse(getCookie('passengers'));
-    const passengers = ticket_data.passengers;
-    // Select the tbody of the table
-    const tbody = document.querySelector(".table-second-div tbody");
-
-    // Clear existing rows (if needed)
-    tbody.innerHTML = "";
-
-    // Loop through the data and create rows
-    passengers.forEach((passenger) => {
-        const row = document.createElement("tr");
-
-        // Create cells for each field
-        row.innerHTML = `
-        <td>${passenger.ageRange}</td>
-        <td>${passenger.firstname} ${passenger.lastname}</td>
-        <td>${passenger.gender}</td>
-        <td>${passenger.idnum}</td>
-        <td>${passenger.birthdate}</td>
-        <td>${passenger.services}</td>
-        <td>${passenger.serviceAmount}</td>
-        <td>${passenger.price}</td>
-        `;
-
-        // Append the row to the tbody
-        tbody.appendChild(row);
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    var email = getCookie('email');
-    if (email) {
-        document.getElementById('email').value = email;
-    }
-
-    var total_price = JSON.parse(getCookie('passengers')).ticketInfo.totalPrice;
-    const number = document.getElementById('number');
-    number.textContent = total_price;
-    number.style.color = "#3030f9";
-    number.style.fontSize = "larger";
-});
-
+// Listener for 'بازگشت' button
 document.querySelector('.second-button').addEventListener('click', event => {
   window.history.back();
 });
 
+// Listener for 'ویرایش مسافران' button
 document.querySelector('.button-second-div').addEventListener('click', event => {
   window.history.back();
 });
 
+// Listener for 'پرداخت' button
 document.querySelector('.first-button').addEventListener('click', async event => {
   const email = document.getElementById('email');
-  const phone_number = document.getElementById('phone-text');
+  const phoneNumber = document.getElementById('phone-text');
 
+  // Validate fields
   email_validation = input_validation(email, 'email', '.email-validation');
-  phone_validation = input_validation(phone_number, 'phone', '.phone-validation');
-  if (email_validation && phone_validation) {
-    const ticket_data = JSON.parse(getCookie('passengers'));
-    ticket_data.ticketInfo.email = email.value;
-    ticket_data.ticketInfo.phoneNumber = phone_number.value;
-    ticket_data.ticketInfo.serviceType = 'بدون سرویس';
+  phone_validation = input_validation(phoneNumber, 'phone', '.phone-validation');
 
+  if (email_validation && phone_validation) {
+    const contact_info = {
+      email: email.value,
+      phoneNumber: phoneNumber.value
+    };
+
+    // Post email and phone number
     const response = await fetch('/submit-passengers/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(ticket_data),
+      body: JSON.stringify(contact_info),
     });
 
     if (response.ok) {

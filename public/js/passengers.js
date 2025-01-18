@@ -1,3 +1,4 @@
+// Validate input field based on its type
 function input_validation(input, fieldtype) {
   const value = input.value.trim();
   let errorMessage = '';
@@ -59,12 +60,13 @@ function input_validation(input, fieldtype) {
 const queryParams = new URLSearchParams(window.location.search);
 const ticketId = queryParams.get('ticketId');
 const passengers = queryParams.get('passengers');
+// HTML div input fields for each passenger
 const newPassenger = `
     <div class="passenger">
       <div class="information-C">
         <div>
           <label for="gender">جنسیت خود را انتخاب کنید:</label>
-          <select id="gender" name="gender[]">
+          <select id="gender" name="gender">
             <option value="زن">زن</option>
             <option value="مرد">مرد</option>
           </select>
@@ -88,7 +90,7 @@ const newPassenger = `
       <div class="input-fields">
         <div class="input-cont">
           <input
-          name="firstname[]"
+          name="firstname"
           type="text"
           placeholder="نام"
           class="firstname input"
@@ -98,7 +100,7 @@ const newPassenger = `
         </div>
         <div class="input-cont">
           <input
-          name="lastname[]"
+          name="lastname"
           type="text"
           placeholder="نام خانوادگی"
           class="lastname input"
@@ -108,7 +110,7 @@ const newPassenger = `
         </div>
         <div class="input-cont">
           <input
-          name="idnum[]"
+          name="idnum"
           type="text"
           placeholder="کد ملی"
           class="idnum input"
@@ -118,7 +120,7 @@ const newPassenger = `
         </div>
         <div class="input-cont">
           <input
-          name="birthdate[]"
+          name="birthdate"
           type="datetime"
           placeholder="تاریخ تولد"
           class="birthdate input"
@@ -134,11 +136,14 @@ const newPassenger = `
     </div>
   `;
 
+// HTML 'اضافه کردن مسافر جدید' button
 const addPassenger_button = `
   <button type="button" class="btn btn-outline-primary" id="addPassenger"
   onclick="add_passenger(this)">+اضافه کردن مسافر جدید</button>
 `;
 
+// Listener to add initial passenger's input field element
+// based on the number of passengers, user entered
 document.addEventListener('DOMContentLoaded', () => {
   const passengersDiv = document.getElementById('passengers');
   for (let i = 0; i < passengers; i++) {
@@ -154,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lastPassenger_div.insertAdjacentHTML('afterend', addPassenger_button);
 });
 
+// Add a new passenger field
 function add_passenger(button) {
   const passengersDiv = document.getElementById('passengers');
   button.remove();
@@ -162,11 +168,13 @@ function add_passenger(button) {
   lastPassenger_div.insertAdjacentHTML('afterend', addPassenger_button);
 }
 
+// Delete the selected passenger field 
 function delete_passenger(button) {
   const passengersDiv = button.parentElement.parentElement;
   passengersDiv.remove();
 }
 
+// read and decode the cookie
 function getCookie(name) {
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
@@ -178,6 +186,7 @@ function getCookie(name) {
   return null; // Return null if cookie not found
 }
 
+// Submit passengers' button
 document.getElementById('button-valid').addEventListener('click', async (e) => {
   e.preventDefault();
   let proceed = true;
@@ -189,30 +198,6 @@ document.getElementById('button-valid').addEventListener('click', async (e) => {
     }
   });
   if (proceed){
-    const form = document.getElementById('reservationForm');
-    const formData = new FormData(form);
-    const data = Array.from(formData.entries())
-      .reduce((acc, [key, value]) => {
-        const keyName = key.replace('[]', '');
-        acc[keyName] = acc[keyName] || [];
-        acc[keyName].push(value);
-        return acc;
-      }, {});
-
-    data['ticketId'] = ticketId;
-
-    const response = await fetch('/submit-passengers/check-price', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      window.location.href = '/confirm.html';
-    } else {
-      response.text().then(errorMessage => {
-        alert(errorMessage);
-      });
-    }
+    document.getElementById('reservationForm').submit();
   }
 });
